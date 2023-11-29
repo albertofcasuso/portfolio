@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const emptyApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'api'
+    baseUrl: 'https://api.afcasuso.com/wp-json/wp/v2'
   }),
   tagTypes: [''],
   endpoints: () => ({})

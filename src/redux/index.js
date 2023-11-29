@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { chaincodeApi } from '../services/chaincode';
+import { postsApi } from '../services/posts';
 
 const store = configureStore({
   reducer: {
-    [chaincodeApi.reducerPath]: chaincodeApi.reducer
+    [postsApi.reducerPath]: postsApi.reducer
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([chaincodeApi.middleware])
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([postsApi.middleware])
 });
 setupListeners(store.dispatch);
 
