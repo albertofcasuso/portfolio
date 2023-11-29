@@ -6,5 +6,4 @@ dist-ssr
 yarn-error.log
 mockServiceWorker.js
 coverage
-build
 yarn.lock
