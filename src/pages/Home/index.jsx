@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PhotoAlbum from 'react-photo-album';
 import LightBox from 'yet-another-react-lightbox';
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import 'yet-another-react-lightbox/styles.css';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Box, Image, Fade, AbsoluteCenter } from '@chakra-ui/react';
 import { useGetFotoMediaQuery } from '../../services/media';
 
 export default function Home() {
@@ -23,30 +22,47 @@ export default function Home() {
   if (isLoading) {
     return (
       <>
-        <Spinner />
+        <Box h="900px" w="100%">
+          <AbsoluteCenter axis="both">
+            <Spinner size={'xl'} />
+          </AbsoluteCenter>
+        </Box>
       </>
     );
   }
   if (!isLoading && data) {
     return (
       <>
-        <PhotoAlbum
+        <Box padding={4} w="100%" mx="auto" sx={{ columnCount: [1, 2, 2], columnGap: '8px' }}>
+          {photoSrc.map((src, index) => {
+            return (
+              <Fade in={src.src} key={src.src}>
+                <Image
+                  key={src.src}
+                  w="100%"
+                  mb={2}
+                  d="inline-block"
+                  src={src.src}
+                  alt="Alt"
+                  onClick={() => setIndex(index)}
+                />
+              </Fade>
+            );
+          })}
+        </Box>
+        {/* <PhotoAlbum
           layout="masonry"
           photos={photoSrc}
           onClick={({ index }) => setIndex(index)}
           columns={containerWidth => {
             if (containerWidth >= 300 && containerWidth < 600) return 2;
-            if (containerWidth >= 600) return 3;
+            if (containerWidth >= 600) return 2;
           }}
-        />
-        <LightBox
-          slides={photoSrc}
-          open={index >= 0}
-          index={index}
-          close={() => setIndex(-1)}
-          // enable optional lightbox plugins
-          plugins={[Fullscreen]}
-        />
+          componentsProps={containerWidth => ({
+            imageProps: { loading: 'lazy' }
+          })}
+        /> */}
+        <LightBox slides={photoSrc} open={index >= 0} index={index} close={() => setIndex(-1)} plugins={[Fullscreen]} />
       </>
     );
   }
