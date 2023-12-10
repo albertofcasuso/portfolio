@@ -4,7 +4,7 @@ import { Masonry } from 'masonic';
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import 'yet-another-react-lightbox/styles.css';
-import { Spinner, Box, Image, AbsoluteCenter } from '@chakra-ui/react';
+import { Spinner, Box, Image, AbsoluteCenter, Fade } from '@chakra-ui/react';
 import { useGetFotoMediaQuery } from '../../services/media';
 
 export default function Home() {
@@ -39,17 +39,27 @@ export default function Home() {
     setIndex(index);
   };
 
-  const MasonryCard = ({ index, data: { source_url }, width }) => {
+  const MasonryCard = ({
+    index,
+    data: {
+      source_url,
+      slug,
+      media_details: {
+        sizes: { medium_large }
+      }
+    },
+    width
+  }) => {
     return (
       <>
         <Image
           key={source_url}
           w="100%"
           mb={2}
-          src={source_url}
+          src={medium_large.source_url}
           alt="Alt"
           onClick={() => handleImageClick(index)}
-          loading="lazy"
+          loading={index <= 1 ? 'eager' : 'lazy'}
         />
       </>
     );
@@ -76,6 +86,7 @@ export default function Home() {
           index={index}
           close={() => setIndex(-1)}
           plugins={[Fullscreen]}
+          carousel={{ preload: 1 }}
         />
       </>
     );
