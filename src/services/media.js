@@ -4,7 +4,7 @@ export const mediaApi = emptyApi.injectEndpoints({
   endpoints: build => ({
     getFotoMedia: build.query({
       query: (page = 1) => {
-        return { url: `media?parent=22&page=${page}&per_page=5` };
+        return { url: `media?parent=67&page=${page}&per_page=5` };
       },
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
