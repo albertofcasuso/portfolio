@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Box, Flex, Text, Button, Stack } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = props => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <NavBarContainer {...props}>
-      <Text color="black">Casuso Photography</Text>
+      <Text color="black" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+        Casuso Photography
+      </Text>
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
     </NavBarContainer>

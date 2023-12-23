@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { useGetStreetProjectsQuery } from '../../services/proyectos';
-import { Box, VStack, HStack, Button } from '@chakra-ui/react';
+import { Box, VStack, HStack, Button, Text } from '@chakra-ui/react';
 
 export default function StreetPage() {
   const navigate = useNavigate();
@@ -39,8 +39,9 @@ export default function StreetPage() {
           ? data.data.map(post => {
               return (
                 <>
-                  <Box w="70%" padding={10}>
+                  <Box w="80%" padding={10}>
                     {parse(post.content.rendered)}
+                    {/* <Text align={'center'}>{post.title.rendered}</Text> */}
                   </Box>
                 </>
               );
