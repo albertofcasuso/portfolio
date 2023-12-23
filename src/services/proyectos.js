@@ -7,9 +7,19 @@ export const proyectosApi = emptyApi.injectEndpoints({
         return { url: 'proyectos' };
       },
       providesTags: ['Proyectos']
+    }),
+    getStreetProjects: build.query({
+      query: (page = 1) => {
+        return { url: `street?page=${page}&per_page=4` };
+      },
+      providesTags: ['StreetProject'],
+      transformResponse: (response, meta) => {
+        const totalPages = meta.response.headers.get('x-wp-totalpages');
+        return { data: response, totalPages };
+      }
     })
   }),
   overrideExisting: false
 });
 
-export const { useGetProyectosQuery } = proyectosApi;
+export const { useGetProyectosQuery, useGetStreetProjectsQuery } = proyectosApi;

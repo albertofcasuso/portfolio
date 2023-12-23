@@ -4,6 +4,6 @@ export const emptyApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.afcasuso.com/wp-json/wp/v2'
   }),
-  tagTypes: [''],
+  tagTypes: ['StreetProject', 'Posts', 'Proyectos'],
   endpoints: () => ({})
 });

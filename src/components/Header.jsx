@@ -61,8 +61,7 @@ const MenuLinks = ({ isOpen }) => {
         pt={[4, 4, 0, 0]}
       >
         <MenuItem to="/">Home</MenuItem>
-        {/* <MenuItem to="/about"> Street Photography</MenuItem>
-        <MenuItem to="/about"> Fashion / Commercial </MenuItem> */}
+        <MenuItem to="/street/1"> Street </MenuItem>
         <MenuItem to="https://instagram.com/afcasuso" isExternal>
           {' '}
           Instagram{' '}

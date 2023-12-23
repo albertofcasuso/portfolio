@@ -4,7 +4,7 @@ import { Masonry } from 'masonic';
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import 'yet-another-react-lightbox/styles.css';
-import { Spinner, Box, Image, AbsoluteCenter, Fade } from '@chakra-ui/react';
+import { Spinner, Box, Image, AbsoluteCenter } from '@chakra-ui/react';
 import { useGetFotoMediaQuery } from '../../services/media';
 
 export default function Home() {
