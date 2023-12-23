@@ -2,12 +2,17 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { useGetStreetProjectsQuery } from '../../services/proyectos';
-import { Box, VStack, HStack, Button, Text } from '@chakra-ui/react';
+import { Box, VStack, HStack, Button } from '@chakra-ui/react';
+import './street.scss';
 
 export default function StreetPage() {
   const navigate = useNavigate();
   const { page: currentPage } = useParams();
   const { data, isError, error } = useGetStreetProjectsQuery(currentPage);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     if (!currentPage) {
@@ -34,14 +39,13 @@ export default function StreetPage() {
 
   return (
     <div>
-      <VStack spacing={10}>
+      <VStack spacing={10} width={'100%'} justify={'center'} align={'center'}>
         {data && data.data.length > 0
           ? data.data.map(post => {
               return (
                 <>
-                  <Box w="80%" padding={10}>
+                  <Box w="80%" padding={10} alignContent={'center'} justifyContent={'center'}>
                     {parse(post.content.rendered)}
-                    {/* <Text align={'center'}>{post.title.rendered}</Text> */}
                   </Box>
                 </>
               );

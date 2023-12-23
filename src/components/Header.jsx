@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Box, Flex, Text, Button, Stack } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Link, Box, Flex, Text, Stack } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 
 const NavBar = props => {
@@ -47,7 +48,7 @@ const MenuToggle = ({ toggle, isOpen }) => {
 const MenuItem = ({ children, isLast, to = '/', isExternal = false, ...rest }) => {
   return (
     <Link href={to} isExternal={isExternal}>
-      <Text display="block" {...rest} color={'black'}>
+      <Text display="block" {...rest} color={'black'} align={'end'}>
         {children}
       </Text>
     </Link>
@@ -67,8 +68,7 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/">Home</MenuItem>
         <MenuItem to="/street/1"> Street </MenuItem>
         <MenuItem to="https://instagram.com/afcasuso" isExternal>
-          {' '}
-          Instagram{' '}
+          Instagram <ExternalLinkIcon verticalAlign={'text-top'} />
         </MenuItem>
       </Stack>
     </Box>
